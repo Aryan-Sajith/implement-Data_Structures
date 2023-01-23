@@ -22,6 +22,7 @@ class SinglyLinkedList:
         self.head.next_node = to_prepend
         if not self.length:  # Edge Case: Empty SLL
             self.tail = to_prepend
+        self.length += 1
 
     def append(self, value):
         """Appends a node to the Singly Linked List."""
