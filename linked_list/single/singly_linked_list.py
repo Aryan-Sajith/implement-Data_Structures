@@ -31,6 +31,32 @@ class SinglyLinkedList:
         self.tail = to_append
         self.length += 1
 
+    def insert_after_value(self, insert_value, target_value):
+        """
+        Attempts to insert node after target node in Singly Linked List.
+        :raises ValueError: Node with target value not found.
+        """
+        target_node = self.find_node(target_value)
+
+        if target_node.value:
+            to_insert = SLLNode(insert_value, target_node.next_node)
+            target_node.next_node = to_insert
+            self.length += 1
+        else:
+            raise ValueError("Target value not found!")
+
+    def find_node(self, target_value) -> SLLNode:
+        """Attempts to find a node with the target value in Singly Linked List."""
+        cur_node = self.head.next_node
+
+        while cur_node:
+            if cur_node.value == target_value:
+                return cur_node
+            else:
+                cur_node = cur_node.next_node
+
+        return SLLNode(None)
+
     def traverse(self):
         """Traverses & prints the nodes in the Singly Linked List."""
         cur_node = self.head.next_node
