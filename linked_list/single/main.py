@@ -11,6 +11,7 @@ def main():
     singly_linked_list.prepend(3)
     singly_linked_list.prepend(0)
     try:
+        singly_linked_list.insert_after_value(11, 10)
         singly_linked_list.insert_after_value(4, 6)
     except ValueError:
         print(f'Sorry, target value not found.')
