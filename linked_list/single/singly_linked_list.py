@@ -16,6 +16,13 @@ class SinglyLinkedList:
         self.tail = self.head
         self.length = 0
 
+    def prepend(self, value):
+        """Prepends a node to the Singly Linked List."""
+        to_prepend = SLLNode(value, self.head.next_node)
+        self.head.next_node = to_prepend
+        if not self.length:  # Edge Case: Empty SLL
+            self.tail = to_prepend
+
     def append(self, value):
         """Appends a node to the Singly Linked List."""
         to_append = SLLNode(value)
