@@ -48,11 +48,26 @@ class SinglyLinkedList:
 
     # Deletion
     def delete_head(self):
-        """Attempts to delete a node from the start of the Singly Linked List."""
+        """Attempts to delete the first node in the Singly Linked List."""
         head = self.head.next_node
         if head:
             self.head.next_node = head.next_node
-            self.length -= 12
+            self.length -= 1
+
+    def delete_tail(self):
+        """Attempts to delete the last node in the Singly Linked List."""
+        if self.tail.value:
+            new_tail_node = self._find_node_before_tail()
+            self.tail = new_tail_node
+            self.tail.next_node = None
+            self.length -= 1
+
+    def _find_node_before_tail(self):
+        """Attempts to find the node right before the last one in the Singly Linked List."""
+        cur_node = self.head
+        while cur_node.next_node.value != self.tail.value:
+            cur_node = cur_node.next_node
+        return cur_node
 
     def find_node(self, target_value) -> SLLNode:
         """Attempts to find a node with the target value in Singly Linked List."""
