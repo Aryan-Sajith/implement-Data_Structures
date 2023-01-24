@@ -35,7 +35,7 @@ class SinglyLinkedList:
     def insert_after_value(self, insert_value, target_value):
         """
         Attempts to insert node after target node in Singly Linked List.
-        :raises ValueError: Node with target value not found.
+        :raises ValueError: Node with target value not found for insertion.
         """
         target_node = self.find_node(target_value)
 
@@ -63,7 +63,10 @@ class SinglyLinkedList:
             self.length -= 1
 
     def delete_node(self, target_value):
-        """Attempts to delete a node with a target value in the Singly Linked List."""
+        """
+        Attempts to delete a node with a target value in the Singly Linked List.
+        @:raises ValueError: Node with target value not found for deletion.
+        """
         target_node = self.find_node(target_value)
 
         if target_node.value:
@@ -76,7 +79,7 @@ class SinglyLinkedList:
                 before_target_node.next_node = target_node.next_node
                 self.length -= 1
         else:
-            raise ValueError('Node with target value not found for deletion!')
+            raise ValueError('Node with target value not found for deletion.')
 
     # Search
     def _find_node_before_target_value(self, target_value):
