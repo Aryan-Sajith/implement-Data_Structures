@@ -1,3 +1,4 @@
+import gc
 import unittest
 from singly_linked_list import SinglyLinkedList
 
@@ -12,6 +13,7 @@ class TestSinglyLinkedList(unittest.TestCase):
     def tearDown(self):
         """Deletes the utilized Singly Linked List instance after each test."""
         del self.singly_linked_list
+        gc.collect()
 
 
 if __name__ == '__main__':
