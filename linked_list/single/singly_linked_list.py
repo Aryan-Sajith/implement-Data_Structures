@@ -78,6 +78,7 @@ class SinglyLinkedList:
         else:
             raise ValueError('Node with target value not found for deletion!')
 
+    # Search
     def _find_node_before_target_value(self, target_value):
         """Attempts to find the node right before the last one in the Singly Linked List."""
         cur_node = self.head
@@ -97,6 +98,7 @@ class SinglyLinkedList:
 
         return SLLNode(None)
 
+    # Traversal
     def traverse(self):
         """Traverses & prints the nodes in the Singly Linked List."""
         cur_node = self.head.next_node
