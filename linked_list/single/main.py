@@ -19,17 +19,16 @@ def main():
     #     singly_linked_list.traverse()
 
     # Deletion
-    # singly_linked_list.append(5)
-    # singly_linked_list.append(10)
-    # singly_linked_list.traverse()
-    # print(f'Length: {singly_linked_list.length}')
-    # singly_linked_list.delete_tail()
-    # singly_linked_list.traverse()
-    # print(f'Length: {singly_linked_list.length}')
-    # singly_linked_list.delete_tail()
-    # singly_linked_list.traverse()
-    # print(f'Length: {singly_linked_list.length}')
-
+    singly_linked_list.append(5)
+    singly_linked_list.append(10)
+    singly_linked_list.traverse()
+    print(f'length: {singly_linked_list.length}')
+    singly_linked_list.delete_node(10)
+    singly_linked_list.traverse()
+    print(f'length: {singly_linked_list.length}')
+    singly_linked_list.delete_node(3)
+    singly_linked_list.traverse()
+    print(f'length: {singly_linked_list.length}')
 
 
 if __name__ == '__main__':
