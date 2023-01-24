@@ -14,9 +14,18 @@ def main():
         singly_linked_list.insert_after_value(11, 10)
         singly_linked_list.insert_after_value(4, 6)
     except ValueError:
-        print(f'Sorry, target value not found.')
+        print(f'sorry, target value not found.')
     finally:
         singly_linked_list.traverse()
+
+    # Deletion
+    singly_linked_list.append(5)
+    singly_linked_list.traverse()
+    print(f'Length: {singly_linked_list.length}')
+    singly_linked_list.delete_head()
+    singly_linked_list.traverse()
+    print(f'Length: {singly_linked_list.length}')
+
 
 
 if __name__ == '__main__':

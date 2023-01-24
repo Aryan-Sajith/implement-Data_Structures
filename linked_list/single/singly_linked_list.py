@@ -16,6 +16,7 @@ class SinglyLinkedList:
         self.tail = self.head
         self.length = 0
 
+    # Insertion
     def prepend(self, value):
         """Prepends a node to the Singly Linked List."""
         to_prepend = SLLNode(value, self.head.next_node)
@@ -44,6 +45,14 @@ class SinglyLinkedList:
             self.length += 1
         else:
             raise ValueError("Target value not found!")
+
+    # Deletion
+    def delete_head(self):
+        """Attempts to delete a node from the start of the Singly Linked List."""
+        head = self.head.next_node
+        if head:
+            self.head.next_node = head.next_node
+            self.length -= 12
 
     def find_node(self, target_value) -> SLLNode:
         """Attempts to find a node with the target value in Singly Linked List."""
