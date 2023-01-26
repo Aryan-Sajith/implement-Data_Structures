@@ -12,7 +12,7 @@ class SinglyLinkedList:
 
     def __init__(self):
         """Initializes the Singly Linked List."""
-        self.head = SLLNode(None)  # Sentinel head node simplifies all operations.
+        self.head = SLLNode(None)   # Sentinel node-> Placeholder head that simplified algorithms.
         self.tail = self.head
         self.length = 0
 
@@ -32,7 +32,7 @@ class SinglyLinkedList:
         self.tail = to_append
         self.length += 1
 
-    def insert_after_value(self, insert_value, target_value):
+    def insert_after_value(self, target_value, insert_value):
         """
         Attempts to insert node after target node in Singly Linked List.
         :raises ValueError: Node with target value not found for insertion.
@@ -40,9 +40,12 @@ class SinglyLinkedList:
         target_node = self.find_node(target_value)
 
         if target_node.value:
-            to_insert = SLLNode(insert_value, target_node.next_node)
-            target_node.next_node = to_insert
-            self.length += 1
+            if target_node == self.tail:
+                self.append(insert_value)
+            else:
+                to_insert = SLLNode(insert_value, target_node.next_node)
+                target_node.next_node = to_insert
+                self.length += 1
         else:
             raise ValueError("Node with target value not found for insertion.")
 
@@ -62,7 +65,7 @@ class SinglyLinkedList:
             self.tail.next_node = None
             self.length -= 1
 
-    def delete_node(self, target_value):
+    def delete_node_with_value(self, target_value):
         """
         Attempts to delete a node with a target value in the Singly Linked List.
         @:raises ValueError: Node with target value not found for deletion.
