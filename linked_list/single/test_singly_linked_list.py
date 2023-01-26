@@ -1,4 +1,5 @@
 import unittest
+
 from singly_linked_list import SinglyLinkedList
 
 
@@ -103,6 +104,24 @@ class TestSinglyLinkedList(unittest.TestCase):
         """Tests whether trying to delete a non-existent value raises a ValueError."""
         with self.assertRaises(ValueError):
             self.sll.delete_node_with_value(1)
+
+    def test_find_node_before_target_value(self):
+        """Tests whether finding the node before target value works properly."""
+        self.sll.append(2)
+        self.sll.prepend(1)
+        self.assertEqual(self.sll._find_node_before_target_value(2), self.sll.head.next, 'Finding the node before '
+                                                                                         'a target value failed.')
+
+    def test_successful_find_node_with_value(self):
+        """Tests whether successfully finding a node with a value works properly."""
+        self.sll.append(2)
+        self.assertEqual(self.sll.find_node_with_value(2), self.sll.tail, 'Failed to successfully find a node with'
+                                                                          'target value when it actually exists.')
+
+    def test_failed_find_node_with_value(self):
+        """Tests whether failing to find a node with value returns a node with value None."""
+        self.assertIsNone(self.sll.find_node_with_value(0).value, 'Found a node with target value when it does not'
+                                                                  'actually exist.')
 
 
 if __name__ == '__main__':

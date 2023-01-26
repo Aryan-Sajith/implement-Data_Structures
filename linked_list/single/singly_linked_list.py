@@ -37,7 +37,7 @@ class SinglyLinkedList:
         Attempts to insert node after target node in Singly Linked List.
         :raises ValueError: Node with target value not found for insertion.
         """
-        target_node = self.find_node(target_value)
+        target_node = self.find_node_with_value(target_value)
 
         if target_node.value:
             if target_node == self.tail:
@@ -72,7 +72,7 @@ class SinglyLinkedList:
         Attempts to delete a node with a target value in the Singly Linked List.
         @:raises ValueError: Node with target value not found for deletion.
         """
-        target_node = self.find_node(target_value)
+        target_node = self.find_node_with_value(target_value)
 
         if target_node.value:
             if target_node == self.head.next:
@@ -94,7 +94,7 @@ class SinglyLinkedList:
             cur_node = cur_node.next
         return cur_node
 
-    def find_node(self, target_value) -> SLLNode:
+    def find_node_with_value(self, target_value) -> SLLNode:
         """Attempts to find a node with the target value in Singly Linked List."""
         cur_node = self.head.next
 
