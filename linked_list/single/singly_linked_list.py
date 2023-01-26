@@ -81,7 +81,7 @@ class SinglyLinkedList:
             self.length -= 1
 
     """
-    Time: O(1)
+    Time: O(N)
     Space: O(1)
     """
     def delete_tail(self):
