@@ -1,6 +1,14 @@
+import fastenum
 import unittest
 
 from singly_linked_list import SinglyLinkedList
+
+
+class Error(fastenum.Enum):
+    """An enum class for commonly recurring error messages."""
+    HEAD = 'Head reference not updated.'
+    TAIL = 'Tail reference not updated.'
+    LENGTH = 'Length not updated.'
 
 
 class TestSinglyLinkedList(unittest.TestCase):
@@ -23,31 +31,31 @@ class TestSinglyLinkedList(unittest.TestCase):
     def test_empty_SLL_prepend(self):
         """Tests whether prepending to an empty SLL works properly."""
         self.sll.prepend(1)
-        self.assertEqual(self.sll.head.next.value, 1, 'Head reference not updated.')
-        self.assertEqual(self.sll.tail.value, 1, 'Tail reference not updated.')
-        self.assertEqual(self.sll.length, 1, 'Length not updated.')
+        self.assertEqual(self.sll.head.next.value, 1, Error.HEAD)
+        self.assertEqual(self.sll.tail.value, 1, Error.TAIL)
+        self.assertEqual(self.sll.length, 1, Error.LENGTH)
 
     def test_non_empty_SLL_prepend(self):
         """Tests whether prepending to a non-empty SLL works properly."""
         self.sll.prepend(2)
         self.sll.prepend(1)
-        self.assertEqual(self.sll.head.next.value, 1, 'Head reference not updated.')
-        self.assertEqual(self.sll.tail.value, 2, 'Tail reference not updated.')
-        self.assertEqual(self.sll.length, 2, 'Length not updated.')
+        self.assertEqual(self.sll.head.next.value, 1, Error.HEAD)
+        self.assertEqual(self.sll.tail.value, 2, Error.TAIL)
+        self.assertEqual(self.sll.length, 2, Error.LENGTH)
 
     def test_SLL_append(self):
         """Tests whether appending to a SLL works properly."""
         self.sll.append(1)
-        self.assertEqual(self.sll.tail.value, 1, 'Tail reference not updated.')
-        self.assertEqual(self.sll.length, 1, 'Length not updated.')
+        self.assertEqual(self.sll.tail.value, 1, Error.TAIL)
+        self.assertEqual(self.sll.length, 1, Error.LENGTH)
 
     def test_successful_insert_after_value(self):
         """Tests whether successfully inserting after a value in the SLL works properly."""
         self.sll.append(1)
         self.sll.insert_after_value(1, 2)
-        self.assertEqual(self.sll.head.next.value, 1, 'Head reference not updated.')
-        self.assertEqual(self.sll.tail.value, 2, 'Tail reference not updated.')
-        self.assertEqual(self.sll.length, 2, 'Length not updated.')
+        self.assertEqual(self.sll.head.next.value, 1, Error.HEAD)
+        self.assertEqual(self.sll.tail.value, 2, Error.TAIL)
+        self.assertEqual(self.sll.length, 2, Error.LENGTH)
 
     def test_failed_insert_after_value(self):
         """Tests whether trying to insert after a non-existent value raises a ValueError."""
@@ -58,9 +66,9 @@ class TestSinglyLinkedList(unittest.TestCase):
         """Tests whether deleting the head node from a SLL with 1 node works properly."""
         self.sll.append(1)
         self.sll.delete_head()
-        self.assertIsNone(self.sll.head.value, 'Head reference not updated.')
-        self.assertIsNone(self.sll.tail.value, 'Tail reference not updated.')
-        self.assertEqual(self.sll.length, 0, 'Length not updated.')
+        self.assertIsNone(self.sll.head.value, Error.HEAD)
+        self.assertIsNone(self.sll.tail.value, Error.TAIL)
+        self.assertEqual(self.sll.length, 0, Error.LENGTH)
 
     def test_delete_non_single_SLL_head(self):
         """Tests whether deleting the head node from a SLL with >1 node works properly."""
@@ -68,17 +76,17 @@ class TestSinglyLinkedList(unittest.TestCase):
         self.sll.prepend(1)
         self.sll.prepend(0)
         self.sll.delete_head()
-        self.assertEqual(self.sll.head.next.value, 1, 'Head reference not updated.')
-        self.assertEqual(self.sll.tail.value, 2, 'Tail reference not updated.')
-        self.assertEqual(self.sll.length, 2, 'Length not updated.')
+        self.assertEqual(self.sll.head.next.value, 1, Error.HEAD)
+        self.assertEqual(self.sll.tail.value, 2, Error.TAIL)
+        self.assertEqual(self.sll.length, 2, Error.LENGTH)
 
     def test_delete_singly_SLL_tail(self):
         """Tests whether deleting the tail node from a SLL with 1 node works properly."""
         self.sll.append(1)
         self.sll.delete_tail()
-        self.assertIsNone(self.sll.head.value, 'Head reference not updated.')
-        self.assertIsNone(self.sll.tail.value, 'Tail reference not updated.')
-        self.assertEqual(self.sll.length, 0, 'Length not updated.')
+        self.assertIsNone(self.sll.head.value, Error.HEAD)
+        self.assertIsNone(self.sll.tail.value, Error.TAIL)
+        self.assertEqual(self.sll.length, 0, Error.LENGTH)
 
     def test_delete_non_single_SLL_tail(self):
         """Tests whether deleting the head node from a SLL with >1 node works properly."""
@@ -86,9 +94,9 @@ class TestSinglyLinkedList(unittest.TestCase):
         self.sll.prepend(1)
         self.sll.prepend(0)
         self.sll.delete_tail()
-        self.assertEqual(self.sll.head.next.value, 0, 'Head reference not updated.')
-        self.assertEqual(self.sll.tail.value, 1, 'Tail reference not updated.')
-        self.assertEqual(self.sll.length, 2, 'Length not updated.')
+        self.assertEqual(self.sll.head.next.value, 0, Error.HEAD)
+        self.assertEqual(self.sll.tail.value, 1, Error.TAIL)
+        self.assertEqual(self.sll.length, 2, Error.LENGTH)
 
     def test_successful_delete_node_with_value(self):
         """Tests whether successfully deleting a node based on value works properly."""
@@ -96,9 +104,9 @@ class TestSinglyLinkedList(unittest.TestCase):
         self.sll.append(1)
         self.sll.append(2)
         self.sll.delete_node_with_value(1)
-        self.assertEqual(self.sll.head.next.value, 0, 'Head reference not updated.')
-        self.assertEqual(self.sll.tail.value, 2, 'Tail reference not updated.')
-        self.assertEqual(self.sll.length, 2, 'Length not updated.')
+        self.assertEqual(self.sll.head.next.value, 0, Error.HEAD)
+        self.assertEqual(self.sll.tail.value, 2, Error.TAIL)
+        self.assertEqual(self.sll.length, 2, Error.LENGTH)
 
     def test_failed_delete_node_with_value(self):
         """Tests whether trying to delete a non-existent value raises a ValueError."""
