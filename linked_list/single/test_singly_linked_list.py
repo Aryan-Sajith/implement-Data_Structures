@@ -24,9 +24,8 @@ class TestSinglyLinkedList(unittest.TestCase):
 
     def test_empty_SLL(self):
         """Tests whether newly initialized SLLs works properly."""
-        self.assertEqual(self.sll.head, self.sll.tail,
-                         'Initial head and tail references not equal.')
-        self.assertEqual(self.sll.length, 0, 'Initial length not equal to 0')
+        self.assertEqual(self.sll.head, self.sll.tail, f'{Error.HEAD} & {Error.TAIL}')
+        self.assertEqual(self.sll.length, 0, Error.TAIL)
 
     def test_empty_SLL_prepend(self):
         """Tests whether prepending to an empty SLL works properly."""
