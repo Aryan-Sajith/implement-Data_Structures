@@ -129,7 +129,7 @@ class TestSinglyLinkedList(unittest.TestCase):
         self.sll.append(2)
         self.sll.append(3)
         self.sll.append(4)
-        self.assertEqual(self.sll.traverse(), ' 1 -> 2 -> 3 -> 4 ->z')
+        self.assertEqual(self.sll.traverse(), ' 1 -> 2 -> 3 -> 4 ->')
 
 
 if __name__ == '__main__':
