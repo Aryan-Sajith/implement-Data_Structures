@@ -12,7 +12,7 @@ class SinglyLinkedList:
 
     def __init__(self):
         """Initializes the Singly Linked List."""
-        self.head = SLLNode(None)   # Sentinel node-> Placeholder head that simplified algorithms.
+        self.head = SLLNode(None)  # Sentinel node-> Placeholder head that simplified algorithms.
         self.tail = self.head
         self.length = 0
 
@@ -109,8 +109,11 @@ class SinglyLinkedList:
     # Traversal
     def traverse(self):
         """Traverses & prints the nodes in the Singly Linked List."""
+        traversal = ''
         cur_node = self.head.next
 
         while cur_node:
-            print(f'{cur_node.value}', end=" -> ")
+            traversal += f' {cur_node.value} ->'
             cur_node = cur_node.next
+
+        return traversal

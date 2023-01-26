@@ -123,6 +123,14 @@ class TestSinglyLinkedList(unittest.TestCase):
         self.assertIsNone(self.sll.find_node_with_value(0).value, 'Found a node with target value when it does not'
                                                                   'actually exist.')
 
+    def test_traversal(self):
+        """Tests whether traversing the SLL works properly."""
+        self.sll.append(1)
+        self.sll.append(2)
+        self.sll.append(3)
+        self.sll.append(4)
+        self.assertEqual(self.sll.traverse(), ' 1 -> 2 -> 3 -> 4 ->z')
+
 
 if __name__ == '__main__':
     unittest.main()
