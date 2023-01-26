@@ -54,6 +54,8 @@ class SinglyLinkedList:
         """Attempts to delete the first node in the Singly Linked List."""
         head = self.head.next_node
         if head:
+            if head == self.tail:  # Edge Case: Deleting 1 node.
+                self.tail = self.head
             self.head.next_node = head.next_node
             self.length -= 1
 
