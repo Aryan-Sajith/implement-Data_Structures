@@ -53,13 +53,23 @@ class TestSinglyLinkedList(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.singly_linked_list.insert_after_value(1, 2)
 
-    def test_delete_head(self):
-        """Tests whether deleting the head node works properly."""
+    def test_delete_single_SLL_head(self):
+        """Tests whether deleting the head node from a Singly Linked List with 1 node works properly."""
         self.singly_linked_list.append(1)
         self.singly_linked_list.delete_head()
         self.assertIsNone(self.singly_linked_list.head.value, 'Head reference not updated.')
         self.assertIsNone(self.singly_linked_list.tail.value, 'Tail reference not updated.')
         self.assertEqual(self.singly_linked_list.length, 0, 'Length not updated.')
+
+    def test_delete_non_single_SLL_head(self):
+        """Tests whether deleting the head node from a Singly Linked List with >1 node works properly."""
+        self.singly_linked_list.append(2)
+        self.singly_linked_list.prepend(1)
+        self.singly_linked_list.prepend(0)
+        self.singly_linked_list.delete_head()
+        self.assertEqual(self.singly_linked_list.head.next_node.value, 1, 'Head reference not updated.')
+        self.assertEqual(self.singly_linked_list.tail.value, 2, 'Tail reference not updated.')
+        self.assertEqual(self.singly_linked_list.length, 2, 'Length not updated.')
 
 
 if __name__ == '__main__':
