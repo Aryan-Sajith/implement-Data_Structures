@@ -8,7 +8,12 @@ class SLLNode:
 
 
 class SinglyLinkedList:
-    """A class to represent a Singly Linked List."""
+    """
+    A class to represent a Singly Linked List.
+    Time Complexities:
+    Best: Insertion & Deletion at Edges: O(1)
+    Worst: Random Insertion & Deletion & Search: O(N)
+    """
 
     def __init__(self):
         """Initializes the SLL."""
@@ -17,6 +22,10 @@ class SinglyLinkedList:
         self.length = 0
 
     # Insertion
+    """
+    Time: O(1)
+    Space: O(1)
+    """
     def prepend(self, value):
         """Prepends a node to the SLL."""
         to_prepend = SLLNode(value, self.head.next)
@@ -25,6 +34,10 @@ class SinglyLinkedList:
             self.tail = to_prepend
         self.length += 1
 
+    """
+    Time: O(1)
+    Space: O(1)
+    """
     def append(self, value):
         """Appends a node to the SLL."""
         to_append = SLLNode(value)
@@ -32,6 +45,10 @@ class SinglyLinkedList:
         self.tail = to_append
         self.length += 1
 
+    """
+    Time: O(N)
+    Space: O(1)
+    """
     def insert_after_value(self, target_value, insert_value):
         """
         Attempts to insert node after target node in SLL.
@@ -50,6 +67,10 @@ class SinglyLinkedList:
             raise ValueError("Node with target value not found for insertion.")
 
     # Deletion
+    """
+    Time: O(1)
+    Space: O(1)
+    """
     def delete_head(self):
         """Attempts to delete the first node in the SLL."""
         head = self.head.next
@@ -59,6 +80,10 @@ class SinglyLinkedList:
             self.head.next = head.next
             self.length -= 1
 
+    """
+    Time: O(1)
+    Space: O(1)
+    """
     def delete_tail(self):
         """Attempts to delete the last node in the SLL."""
         if self.tail.value:
@@ -67,6 +92,10 @@ class SinglyLinkedList:
             self.tail.next = None
             self.length -= 1
 
+    """
+    Time: O(N)
+    Space: O(1)
+    """
     def delete_node_with_value(self, target_value):
         """
         Attempts to delete a node with a target value in the SLL.
@@ -87,6 +116,10 @@ class SinglyLinkedList:
             raise ValueError('Node with target value not found for deletion.')
 
     # Search
+    """
+    Time: O(N)
+    Space: O(1)
+    """
     def _find_node_before_target_value(self, target_value):
         """Attempts to find the node right before the last one in the SLL."""
         cur_node = self.head
@@ -94,6 +127,10 @@ class SinglyLinkedList:
             cur_node = cur_node.next
         return cur_node
 
+    """
+    Time: O(N)
+    Space: O(1)
+    """
     def find_node_with_value(self, target_value) -> SLLNode:
         """Attempts to find a node with the target value in SLL."""
         cur_node = self.head.next
@@ -107,6 +144,10 @@ class SinglyLinkedList:
         return SLLNode(None)
 
     # Traversal
+    """
+    Time: O(N)
+    Space: O(1)
+    """
     def traverse(self):
         """Traverses the nodes in the SLL"""
         traversal = ''
