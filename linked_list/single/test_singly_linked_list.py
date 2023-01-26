@@ -89,6 +89,21 @@ class TestSinglyLinkedList(unittest.TestCase):
         self.assertEqual(self.sll.tail.value, 1, 'Tail reference not updated.')
         self.assertEqual(self.sll.length, 2, 'Length not updated.')
 
+    def test_successful_delete_node_with_value(self):
+        """Tests whether successfully deleting a node based on value works properly."""
+        self.sll.append(0)
+        self.sll.append(1)
+        self.sll.append(2)
+        self.sll.delete_node_with_value(1)
+        self.assertEqual(self.sll.head.next.value, 0, 'Head reference not updated.')
+        self.assertEqual(self.sll.tail.value, 2, 'Tail reference not updated.')
+        self.assertEqual(self.sll.length, 2, 'Length not updated.')
+
+    def test_failed_delete_node_with_value(self):
+        """Tests whether trying to delete a non-existent value raises a ValueError."""
+        with self.assertRaises(ValueError):
+            self.sll.delete_node_with_value(1)
+
 
 if __name__ == '__main__':
     unittest.main()
