@@ -11,7 +11,8 @@ class SinglyLinkedList:
     """
     A class to represent a Singly Linked List.
     Time Complexities:
-    Best: Insertion & Deletion at Edges: O(1)
+    Best: Insertion & Deletion at Head: O(1)
+        Example: Customer Service Wait list.
     Worst: Random Insertion & Deletion & Search: O(N)
     """
 
