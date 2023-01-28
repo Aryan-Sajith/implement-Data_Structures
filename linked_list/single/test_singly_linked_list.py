@@ -12,7 +12,7 @@ class Error(fastenum.Enum):
 
 
 class TestSinglyLinkedList(unittest.TestCase):
-    """Tests the SLL class."""
+    """Tests the Singly Linked List(SLL) class."""
 
     def setUp(self):
         """Setup empty SLL."""
