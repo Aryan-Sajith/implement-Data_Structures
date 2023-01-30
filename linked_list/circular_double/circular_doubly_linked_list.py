@@ -96,11 +96,8 @@ class CircularDoublyLinkedList:
         """
         cur_node = self.head.next
 
-        while cur_node.value is not None:
-            if cur_node.value != target_value:
-                cur_node = cur_node.next
-            else:
-                break
+        while cur_node.value is not None and cur_node.value != target_value:
+            cur_node = cur_node.next
 
         return cur_node
 
@@ -113,10 +110,7 @@ class CircularDoublyLinkedList:
         """
         cur_node = self.tail.prev
 
-        while cur_node.value is not None:
-            if cur_node.value != target_value:
-                cur_node = cur_node.prev
-            else:
-                break
+        while cur_node.value is not None and cur_node.value != target_value:
+            cur_node = cur_node.prev
 
         return cur_node
