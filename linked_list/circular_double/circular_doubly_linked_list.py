@@ -21,13 +21,12 @@ class CircularDoublyLinkedList:
         self.length = 0
 
     # Insertion
-    """
+    def prepend(self, value):
+        """
+        Inserts a node to the front of the CDLL.
         Time: O(1)
         Space: O(1)
-    """
-
-    def prepend(self, value):
-        """Inserts a node to the front of the CDLL."""
+        """
         to_prepend = CDLLNode(value, self.head.next, self.head)
         self.head.next.prev = to_prepend
         self.head.next = to_prepend
