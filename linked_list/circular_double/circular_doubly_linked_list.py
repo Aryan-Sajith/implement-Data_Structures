@@ -12,6 +12,7 @@ class CDLLNode:
 
 
 class StartingPoint(fastenum.Enum):
+    """An enum class to represent starting points for search within the CDLL."""
     HEAD = 'head'
     TAIL = 'tail'
 
