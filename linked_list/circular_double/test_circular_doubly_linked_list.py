@@ -48,6 +48,21 @@ class TestCircularDoublyLinkedList(unittest.TestCase):
         self.assertEqual(self.cdll.tail.prev.value, 1, Error.TAIL)
         self.assertEqual(self.cdll.length, 2, Error.LENGTH)
 
+    def test_append_empty_CDLL(self):
+        """Tests whether appending to end of an empty CDLL works properly."""
+        self.cdll.append(0)
+        self.assertEqual(self.cdll.head.next.value, 0, Error.HEAD)
+        self.assertEqual(self.cdll.tail.prev.value, 0, Error.TAIL)
+        self.assertEqual(self.cdll.length, 1, Error.LENGTH)
+
+    def test_append_non_empty_CDLL(self):
+        """Tests whether prepending to a non-empty CDLL works properly."""
+        self.cdll.append(0)
+        self.cdll.append(1)
+        self.assertEqual(self.cdll.head.next.value, 0, Error.HEAD)
+        self.assertEqual(self.cdll.tail.prev.value, 1, Error.TAIL)
+        self.assertEqual(self.cdll.length, 2, Error.LENGTH)
+
 
 if __name__ == '__main__':
     unittest.main()

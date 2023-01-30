@@ -31,3 +31,14 @@ class CircularDoublyLinkedList:
         self.head.next.prev = to_prepend
         self.head.next = to_prepend
         self.length += 1
+
+    def append(self, value):
+        """
+        Inserts a node to the end of the CDLL.
+        Time: O(1)
+        Space: O(1)
+        """
+        to_append = CDLLNode(value, self.tail, self.tail.prev)
+        self.tail.prev.next = to_append
+        self.tail.prev = to_append
+        self.length += 1
