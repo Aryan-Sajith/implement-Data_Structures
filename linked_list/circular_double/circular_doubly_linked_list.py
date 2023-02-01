@@ -145,6 +145,24 @@ class CircularDoublyLinkedList:
         else:
             raise IndexError('Cannot delete tail since empty list.')
 
+    def delete_value(self, target_value, starting_point):
+        """
+        Attempts to delete the node with target value.
+        :param target_value: The node value to delete.
+        :param starting_point: Determines whether search for node to delete begins at head or tail. Validated via StartingPoint enum.
+        :raises ValueError: If invalid starting point or node with target value not found.
+        """
+        self._validate_starting_point(starting_point)
+
+        target_node = self._find_target_node(target_value, starting_point)
+
+        if target_node.value is not None:
+            target_node.prev.next = target_node.next
+            target_node.next.prev = target_node.prev
+            self.length -= 1
+        else:
+            raise ValueError('Target node to delete not found.')
+
     # Search
     def search_from_head(self, target_value) -> CDLLNode:
         """

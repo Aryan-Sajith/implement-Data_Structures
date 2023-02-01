@@ -72,12 +72,6 @@ class TestCircularDoublyLinkedList(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.cdll.insert_before_value(1, 0, 'head')
 
-    def test_insert_before_value_invalid_starting_point(self):
-        """Tests if inserting before a value with an invalid starting point raises a ValueError."""
-        self.cdll.append(1)
-        with self.assertRaises(ValueError):
-            self.cdll.insert_before_value(1, 0, 'nowhere')
-
     def test_insert_before_value_nonempty_CDLL(self):
         """Tests if inserting before a value works properly in a non-empty CDLL."""
         self.cdll.append(0)
@@ -95,12 +89,6 @@ class TestCircularDoublyLinkedList(unittest.TestCase):
         """Tests if inserting after a value in an empty CDLL raises a ValueError."""
         with self.assertRaises(ValueError):
             self.cdll.insert_after_value(0, 1, 'head')
-
-    def test_insert_after_value_invalid_starting_point(self):
-        """Tests if inserting after a value with an invalid starting point raises a ValueError."""
-        self.cdll.append(1)
-        with self.assertRaises(ValueError):
-            self.cdll.insert_after_value(1, 0, 'nowhere')
 
     def test_insert_after_value_nonempty_CDLL(self):
         """Tests if inserting before a value works properly in a non-empty CDLL."""
@@ -141,6 +129,20 @@ class TestCircularDoublyLinkedList(unittest.TestCase):
         self.cdll.delete_tail()
         self.assertEqual(self.cdll.head.next.value, 0, Error.DELETE.value)
         self.assertEqual(self.cdll.tail.prev.value, 0, Error.DELETE.value)
+
+    def test_delete_by_value_empty_CDLL(self):
+        """Tests if trying to delete a value within empty CDLL raises ValueError."""
+        with self.assertRaises(ValueError):
+            self.cdll.delete_value(0, 'head')
+
+    def test_delete_by_value_non_empty_CDLL(self):
+        """Tests if deleting a value in a non-empty CDLl works properly."""
+        for i in range(4):
+            self.cdll.append(i)
+        self.cdll.delete_value(2, 'head')
+        self.assertEqual(self.cdll.head.next.next.next.value, 3, Error.DELETE.value)
+        self.assertEqual(self.cdll.tail.prev.prev.value, 1, Error.DELETE.value)
+        self.assertEqual(self.cdll.length, 3, Error.LENGTH.value)
 
     def test_starting_point_validation(self):
         """Tests if passing in invalid starting point raises a ValueError."""
