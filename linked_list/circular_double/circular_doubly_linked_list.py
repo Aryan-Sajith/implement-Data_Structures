@@ -62,12 +62,32 @@ class CircularDoublyLinkedList:
         :param insert_value: The value to insert.
         :param starting_point: Determines whether search for target value occurs from head or tail. Uses StartingPoint enum to validate starting point.
         """
-        target_node = self._find_target_node(starting_point, target_value)
+        target_node = self._find_target_node(target_value, starting_point)
 
-        if target_node.value:
+        if target_node.value is not None:
             to_insert = CDLLNode(insert_value, target_node, target_node.prev)
             target_node.prev.next = to_insert
             target_node.prev = to_insert
+            self.length += 1
+        else:
+            raise ValueError('Node with target value not found.')
+
+    def insert_after_value(self, target_value, insert_value, starting_point):
+        """
+        Attempts to insert a node with insert value after a node with target value.
+        Time: O(N)
+        Space: O(1)
+        :raises ValueError: If invalid starting point or node with target value not found.
+        :param target_value: The target value to insert after.
+        :param insert_value: The value to insert.
+        :param starting_point: Determines whether search for target value occurs from head or tail. Uses StartingPoint enum to validate starting point.
+        """
+        target_node = self._find_target_node(target_value, starting_point)
+
+        if target_node.value is not None:
+            to_insert = CDLLNode(insert_value, target_node.next, target_node)
+            target_node.next.prev = to_insert
+            target_node.next = to_insert
             self.length += 1
         else:
             raise ValueError('Node with target value not found.')

@@ -88,6 +88,30 @@ class TestCircularDoublyLinkedList(unittest.TestCase):
         self.assertEqual(self.cdll.tail.prev.prev.prev.prev.prev.prev.value, 1, Error.INSERT.value)
         self.assertEqual(self.cdll.length, 7, Error.LENGTH.value)
 
+    def test_insert_after_value_empty_CDLL(self):
+        """Tests if inserting after a value in an empty CDLL raises a ValueError."""
+        with self.assertRaises(ValueError):
+            self.cdll.insert_after_value(0, 1, 'head')
+
+    def test_insert_after_value_invalid_starting_point(self):
+        """Tests if inserting after a value with an invalid starting point raises a ValueError."""
+        self.cdll.append(1)
+        with self.assertRaises(ValueError):
+            self.cdll.insert_after_value(1, 0, 'nowhere')
+
+    def test_insert_after_value_nonempty_CDLL(self):
+        """Tests if inserting before a value works properly in a non-empty CDLL."""
+        self.cdll.append(0)
+        self.cdll.append(2)
+        self.cdll.append(3)
+        self.cdll.append(4)
+        self.cdll.append(5)
+        self.cdll.append(6)
+        self.cdll.insert_after_value(0, 1, 'head')
+        self.assertEqual(self.cdll.head.next.next.value, 1, Error.INSERT.value)
+        self.assertEqual(self.cdll.tail.prev.prev.prev.prev.prev.prev.value, 1, Error.INSERT.value)
+        self.assertEqual(self.cdll.length, 7, Error.LENGTH.value)
+
 
 if __name__ == '__main__':
     unittest.main()
