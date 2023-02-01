@@ -94,6 +94,8 @@ class CircularDoublyLinkedList:
 
     def _find_target_node(self, target_value, starting_point):
         """ Attempts to find a node with a target value.
+        Time: O(N)
+        Space: O(1)
         :raises ValueError: If invalid starting point or node with target value not found.
         :param target_value: The target value to find.
         :param starting_point: Determines whether search for target value occurs from head or tail.Uses StartingPoint enum to validate starting point.
@@ -105,7 +107,8 @@ class CircularDoublyLinkedList:
         else:
             return self.search_from_tail(target_value)
 
-    def _validate_starting_point(self, starting_point):
+    @staticmethod
+    def _validate_starting_point(starting_point):
         """
         Uses StartingPoint enum to validate starting point
         :raises ValueError: If invalid starting point.
@@ -148,6 +151,8 @@ class CircularDoublyLinkedList:
         Traverses the nodes in the CDLL from starting point.
         :param starting_point: Determines whether search starts from head or tail. Validation via StartingPoint enum.
         :raises ValueError: If invalid starting point.
+        Time: O(N)
+        Space: O(1)
         """
         self._validate_starting_point(starting_point)
 
@@ -157,7 +162,11 @@ class CircularDoublyLinkedList:
             return self.traverse_from_tail()
 
     def traverse_from_head(self):
-        """Traverses the nodes in the CDLL from head."""
+        """
+        Traverses the nodes in the CDLL from head.
+        Time: O(N)
+        Space: O(1)
+        """
         traversal = ''
         cur_node = self.head.next
 
@@ -168,7 +177,11 @@ class CircularDoublyLinkedList:
         return traversal
 
     def traverse_from_tail(self):
-        """Traverses the nodes in the CDLL from tail."""
+        """
+        Traverses the nodes in the CDLL from head.
+        Time: O(N)
+        Space: O(1)
+        """
         traversal = ''
         cur_node = self.tail.prev
 

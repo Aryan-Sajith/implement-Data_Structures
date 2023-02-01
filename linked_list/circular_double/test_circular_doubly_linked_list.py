@@ -10,6 +10,7 @@ class Error(fastenum.Enum):
     HEAD = 'Head reference not updated.'
     TAIL = 'Tail reference not updated.'
     INSERT = 'Insertion error.'
+    SEARCH = 'Search error.'
     TRAVERSAL = 'Traversal error.'
     LENGTH = 'Length not updated.'
 
@@ -112,6 +113,23 @@ class TestCircularDoublyLinkedList(unittest.TestCase):
         self.assertEqual(self.cdll.head.next.next.value, 1, Error.INSERT.value)
         self.assertEqual(self.cdll.tail.prev.prev.prev.prev.prev.prev.value, 1, Error.INSERT.value)
         self.assertEqual(self.cdll.length, 7, Error.LENGTH.value)
+
+    def test_starting_point_validation(self):
+        """Tests if passing in invalid starting point raises a ValueError."""
+        with self.assertRaises(ValueError):
+            self.cdll._validate_starting_point('nowhere')
+
+    def test_search_from_head(self):
+        """Tests if searching from head works properly."""
+        for i in range(4):
+            self.cdll.append(i)
+        self.assertEqual(self.cdll._find_target_node(2, 'head').value, 2, Error.SEARCH.value)
+
+    def test_search_from_tail(self):
+        """Tests if searching from tail works properly."""
+        for i in range(4):
+            self.cdll.append(i)
+        self.assertEqual(self.cdll._find_target_node(3, 'tail').value, 3, Error.SEARCH.value)
 
     def test_traversal_invalid_starting_point(self):
         """Tests if traversal with an invalid starting point returns a ValueError."""
