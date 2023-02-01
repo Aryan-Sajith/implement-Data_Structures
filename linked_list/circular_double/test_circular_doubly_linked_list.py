@@ -10,6 +10,7 @@ class Error(fastenum.Enum):
     HEAD = 'Head reference not updated.'
     TAIL = 'Tail reference not updated.'
     INSERT = 'Insertion error.'
+    DELETE = 'Deletion error.'
     SEARCH = 'Search error.'
     TRAVERSAL = 'Traversal error.'
     LENGTH = 'Length not updated.'
@@ -39,31 +40,31 @@ class TestCircularDoublyLinkedList(unittest.TestCase):
     def test_prepend_empty_CDLL(self):
         """Tests whether prepending to an empty CDLL works properly."""
         self.cdll.prepend(0)
-        self.assertEqual(self.cdll.head.next.value, 0, Error.HEAD.value)
-        self.assertEqual(self.cdll.tail.prev.value, 0, Error.TAIL.value)
+        self.assertEqual(self.cdll.head.next.value, 0, Error.INSERT.value)
+        self.assertEqual(self.cdll.tail.prev.value, 0, Error.INSERT.value)
         self.assertEqual(self.cdll.length, 1, Error.LENGTH.value)
 
     def test_prepend_non_empty_CDLL(self):
         """Tests whether prepending to a non-empty CDLL works properly."""
         self.cdll.prepend(1)
         self.cdll.prepend(0)
-        self.assertEqual(self.cdll.head.next.value, 0, Error.HEAD.value)
-        self.assertEqual(self.cdll.tail.prev.value, 1, Error.TAIL.value)
+        self.assertEqual(self.cdll.head.next.value, 0, Error.INSERT.value)
+        self.assertEqual(self.cdll.tail.prev.value, 1, Error.INSERT.value)
         self.assertEqual(self.cdll.length, 2, Error.LENGTH.value)
 
     def test_append_empty_CDLL(self):
         """Tests whether appending to end of an empty CDLL works properly."""
         self.cdll.append(0)
-        self.assertEqual(self.cdll.head.next.value, 0, Error.HEAD.value)
-        self.assertEqual(self.cdll.tail.prev.value, 0, Error.TAIL.value)
+        self.assertEqual(self.cdll.head.next.value, 0, Error.INSERT.value)
+        self.assertEqual(self.cdll.tail.prev.value, 0, Error.INSERT.value)
         self.assertEqual(self.cdll.length, 1, Error.LENGTH.value)
 
     def test_append_nonempty_CDLL(self):
         """Tests whether prepending to a non-empty CDLL works properly."""
         self.cdll.append(0)
         self.cdll.append(1)
-        self.assertEqual(self.cdll.head.next.value, 0, Error.HEAD.value)
-        self.assertEqual(self.cdll.tail.prev.value, 1, Error.TAIL.value)
+        self.assertEqual(self.cdll.head.next.value, 0, Error.INSERT.value)
+        self.assertEqual(self.cdll.tail.prev.value, 1, Error.INSERT.value)
         self.assertEqual(self.cdll.length, 2, Error.LENGTH.value)
 
     def test_insert_before_value_empty_CDLL(self):
@@ -113,6 +114,20 @@ class TestCircularDoublyLinkedList(unittest.TestCase):
         self.assertEqual(self.cdll.head.next.next.value, 1, Error.INSERT.value)
         self.assertEqual(self.cdll.tail.prev.prev.prev.prev.prev.prev.value, 1, Error.INSERT.value)
         self.assertEqual(self.cdll.length, 7, Error.LENGTH.value)
+
+    def test_delete_head_empty_CDLL(self):
+        """Tests if trying to delete head from an empty CDLL raises an IndexError."""
+        with self.assertRaises(IndexError):
+            self.cdll.delete_head()
+            
+    def test_delete_head_non_empty_CDLL(self):
+        """Tests if trying to delete head from a non-empty CDLL works properly."""
+        self.cdll.append(0)
+        self.cdll.append(1)
+        self.cdll.delete_head()
+        self.assertEqual(self.cdll.head.next.value, 1, Error.DELETE.value)
+        self.assertEqual(self.cdll.tail.prev.value, 1, Error.DELETE.value)
+        self.assertEqual(self.cdll.length, 1, Error.LENGTH.value)
 
     def test_starting_point_validation(self):
         """Tests if passing in invalid starting point raises a ValueError."""

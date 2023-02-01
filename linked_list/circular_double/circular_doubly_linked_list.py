@@ -116,6 +116,21 @@ class CircularDoublyLinkedList:
         if starting_point not in [e.value for e in StartingPoint]:
             raise ValueError('Invalid starting point.')
 
+    # Deletion
+    def delete_head(self):
+        """
+        Attempts to delete head node.
+        Time: O(1)
+        Space: O(1)
+        :raises IndexError: If cdll is empty.
+        """
+        if self.length > 0:
+            self.head.next.next.prev = self.head
+            self.head.next = self.head.next.next
+            self.length -= 1
+        else:
+            raise IndexError('Cannot delete head since empty list.')
+
     # Search
     def search_from_head(self, target_value) -> CDLLNode:
         """
