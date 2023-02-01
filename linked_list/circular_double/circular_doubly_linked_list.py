@@ -141,3 +141,39 @@ class CircularDoublyLinkedList:
             cur_node = cur_node.prev
 
         return cur_node
+
+    # Traversal
+    def traverse(self, starting_point):
+        """
+        Traverses the nodes in the CDLL from starting point.
+        :param starting_point: Determines whether search starts from head or tail. Validation via StartingPoint enum.
+        :raises ValueError: If invalid starting point.
+        """
+        self._validate_starting_point(starting_point)
+
+        if starting_point == StartingPoint.HEAD.value:
+            return self.traverse_from_head()
+        else:
+            return self.traverse_from_tail()
+
+    def traverse_from_head(self):
+        """Traverses the nodes in the CDLL from head."""
+        traversal = ''
+        cur_node = self.head.next
+
+        while cur_node.value is not None:
+            traversal += f' {cur_node.value} ->'
+            cur_node = cur_node.next
+
+        return traversal
+
+    def traverse_from_tail(self):
+        """Traverses the nodes in the CDLL from tail."""
+        traversal = ''
+        cur_node = self.tail.prev
+
+        while cur_node.value is not None:
+            traversal = f'{cur_node.value} -> ' + traversal
+            cur_node = cur_node.prev
+
+        return traversal

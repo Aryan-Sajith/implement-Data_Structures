@@ -51,7 +51,7 @@ class SinglyLinkedList:
         """
         target_node = self.find_node_with_value(target_value)
 
-        if target_node.value:
+        if target_node.value is not None:
             if target_node == self.tail:
                 self.append(insert_value)
             else:
@@ -96,7 +96,7 @@ class SinglyLinkedList:
         """
         target_node = self.find_node_with_value(target_value)
 
-        if target_node.value:
+        if target_node.value is not None:
             if target_node == self.head.next:
                 self.delete_head()
             elif target_node == self.tail:
