@@ -119,7 +119,7 @@ class TestCircularDoublyLinkedList(unittest.TestCase):
         """Tests if trying to delete head from an empty CDLL raises an IndexError."""
         with self.assertRaises(IndexError):
             self.cdll.delete_head()
-            
+
     def test_delete_head_non_empty_CDLL(self):
         """Tests if trying to delete head from a non-empty CDLL works properly."""
         self.cdll.append(0)
@@ -128,6 +128,19 @@ class TestCircularDoublyLinkedList(unittest.TestCase):
         self.assertEqual(self.cdll.head.next.value, 1, Error.DELETE.value)
         self.assertEqual(self.cdll.tail.prev.value, 1, Error.DELETE.value)
         self.assertEqual(self.cdll.length, 1, Error.LENGTH.value)
+
+    def test_delete_tail_empty_CDLL(self):
+        """Tests if trying to delete tail from empty CDLL raises IndexError."""
+        with self.assertRaises(IndexError):
+            self.cdll.delete_tail()
+
+    def test_delete_tail_non_empty_CDLL(self):
+        """Tests if trying to delete tail from a non-empty CDLL works properly."""
+        self.cdll.append(0)
+        self.cdll.append(1)
+        self.cdll.delete_tail()
+        self.assertEqual(self.cdll.head.next.value, 0, Error.DELETE.value)
+        self.assertEqual(self.cdll.tail.prev.value, 0, Error.DELETE.value)
 
     def test_starting_point_validation(self):
         """Tests if passing in invalid starting point raises a ValueError."""

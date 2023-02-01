@@ -131,6 +131,20 @@ class CircularDoublyLinkedList:
         else:
             raise IndexError('Cannot delete head since empty list.')
 
+    def delete_tail(self):
+        """
+        Attempts to delete tail node.
+        Time: O(1)
+        Space: O(1)
+        :raises IndexError: If cdll is empty.
+        """
+        if self.length > 0:
+            self.tail.prev.prev.next = self.tail
+            self.tail.prev = self.tail.prev.prev
+            self.length -= 1
+        else:
+            raise IndexError('Cannot delete tail since empty list.')
+
     # Search
     def search_from_head(self, target_value) -> CDLLNode:
         """
